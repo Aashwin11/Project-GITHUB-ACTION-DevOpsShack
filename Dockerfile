@@ -6,7 +6,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 ENV APP_HOME /usr/src/app
 
-COPY app/*.jar $APP_HOME/app.jar
+COPY app/*.jar $APP_HOME/
 
 WORKDIR $APP_HOME
 
