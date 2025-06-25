@@ -114,7 +114,7 @@ jobs:
           organization: aashwin11
           
     - name: SonarCloud Quality Gate Check
-      uses: SonarSource/sonarcloud-quality-gate-action@master
+      uses: mr-smithers-excellent/sonarcloud-quality-gate-action@v1
       with:
         projectKey: Aashwin11_Project-GITHUB-ACTION-DevOpsShack
         organization: aashwin11
