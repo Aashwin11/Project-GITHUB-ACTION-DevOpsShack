@@ -6,7 +6,6 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 ENV APP_HOME=/usr/src/app
 
-
 WORKDIR $APP_HOME
 
 
