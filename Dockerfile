@@ -4,11 +4,12 @@ EXPOSE 8080
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-ENV APP_HOME /usr/src/app
+ENV APP_HOME=/usr/src/app
 
-COPY app/*.jar $APP_HOME/
 
 WORKDIR $APP_HOME
+
+COPY app/*.jar $APP_HOME/
 
 USER appuser
 
