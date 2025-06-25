@@ -8,7 +8,7 @@ jobs:
 
   compile:
     # runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: v1
     #  runs-on: ubuntu-latest - This is a Shared Runner provided by GitHub
 
 # Inside each job, there are multiple steps. 
@@ -35,7 +35,7 @@ jobs:
 
   security-check:
     # runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: v1
     needs: compile 
  
    
@@ -65,7 +65,7 @@ jobs:
         
   test :
     # runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: v1
     needs: security-check
 
     steps:
