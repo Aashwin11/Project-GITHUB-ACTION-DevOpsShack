@@ -109,14 +109,10 @@ jobs:
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v2
-      with:
-          projectKey: Aashwin11_Project-GITHUB-ACTION-DevOpsShack
-          organization: aashwin11
+ 
           
     - name: SonarCloud Quality Gate Check
       uses: sonarsource/sonarqube-quality-gate-action@master
-      with:
-        projectKey: Aashwin11_Project-GITHUB-ACTION-DevOpsShack
-        organization: aashwin11
+     
    
   
