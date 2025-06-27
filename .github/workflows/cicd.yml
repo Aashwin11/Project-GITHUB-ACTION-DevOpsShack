@@ -167,3 +167,59 @@ jobs:
           context: .
           push: true
           tags: 11aashwin/bankapp:latest
+
+          
+  Deploy_to_K8:
+    runs-on: v1
+    needs: build_docker_image_and_push
+
+    steps:
+    - name: Checkout the Repo
+      uses: actions/checkout@v4
+
+      
+    - name: Download JAR Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: app-jar
+        path: app # or path/to/artifact
+
+    - name: Install AWS CLI v2
+      run:  |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+          unzip -q /tmp/awscliv2.zip -d /tmp
+          rm /tmp/awscliv2.zip
+          sudo /tmp/aws/install --update
+          rm -rf /tmp/aws/
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4.1.0
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Setup Kube
+    - name: LList Worksspace contents _AFter JAR DOWNLOAD
+      run: ls -l
+    - name: List app directory contents
+      run: ls -lh app
+
+    -  name: Login to Docker Hub
+       uses: docker/login-action@v3
+       with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Set up KubeCtl 
+    - uses: azure/setup-kubectl@v4
+      with:
+         version: latest # default is latest stable
+   
+    - name: COnfigure Kube Config
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{secrets.EKS_KUBECONFIG}}" > $HOME/.kube/config
+
+    - name: Deply to EKS
+      run: |
+        kubectl apply -f ds.yml
