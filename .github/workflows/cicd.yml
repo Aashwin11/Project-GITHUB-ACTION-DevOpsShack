@@ -211,4 +211,5 @@ jobs:
 
     - name: Deply to EKS
       run: |
-        kubectl apply -f ds.yml
+        kubectl apply -f ds.yml --validate=false
+
