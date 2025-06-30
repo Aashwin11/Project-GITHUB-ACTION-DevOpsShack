@@ -6,6 +6,7 @@ ENV APP_HOME=/usr/src/app
 
 WORKDIR $APP_HOME
 
+
 COPY app/*.jar /usr/src/app/app.jar
 
 USER appuser
