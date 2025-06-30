@@ -10,4 +10,5 @@ COPY app/*.jar /usr/src/app/app.jar
 
 USER appuser
 
+
 CMD ["java", "-jar", "app.jar"]
